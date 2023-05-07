@@ -1,0 +1,14 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="alert alert-warning" *ngIf='loginInvalido'>{{mensagemErro}}</div>
+    <div class="alert alert-success" *ngIf='loginEfetuadoComSucesso'>{{mensagemSucesso}}</div>
+    <h3>Login</h3>
+
+    <form [formGroup]="formGroup">
+      <input type="text" id="username" class="fadeIn second" formControlName="email" name="username" placeholder="e-mail">
+      <input type="password" id="password" class="fadeIn third" formControlName="senha" name="password" placeholder="senha">
+      <input type="submit" (click)=realizarLogin() class="fadeIn fourth" value="Log In">
+    </form>
+
+  </div>
+</div>
