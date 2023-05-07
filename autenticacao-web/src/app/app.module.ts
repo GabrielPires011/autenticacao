@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app.routing.module';
-import { AuthModule } from './auth/auth.module';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app.routing.module';
+import {AuthModule} from './auth/auth.module';
 import {AppComponent} from "./app.component";
+import {BemVindoModule} from "./pagina/bem-vindo/bem-vindo.module";
+import {Interceptor} from "./configuration/interceptor";
 
 @NgModule({
   declarations: [
@@ -15,9 +17,17 @@ import {AppComponent} from "./app.component";
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    BemVindoModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

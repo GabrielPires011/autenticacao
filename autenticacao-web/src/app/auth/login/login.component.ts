@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginDTO} from "../../model/login.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   loginInvalido = false;
   loginEfetuadoComSucesso = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router,) {
     this.formGroup = this.fb.group({
       email: [undefined, [Validators.required, Validators.email]],
       senha: [undefined, [Validators.required]]
@@ -33,6 +34,9 @@ export class LoginComponent implements OnInit {
         this.loginInvalido = false;
         this.loginEfetuadoComSucesso = true;
         this.mensagemSucesso = 'Login bem-sucedido';
+        setTimeout(() => {
+          this.router.navigate(['/bem-vindo']);
+        }, 100)
       },
       () => {
         this.loginInvalido = true;
