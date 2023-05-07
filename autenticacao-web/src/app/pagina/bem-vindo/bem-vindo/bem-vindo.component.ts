@@ -14,7 +14,7 @@ export class BemVindoComponent implements OnInit{
 
   texto?: string;
 
-  constructor(private bemVindoService: BemVindoService) {}
+  constructor(private bemVindoService: BemVindoService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.get()
@@ -28,5 +28,7 @@ export class BemVindoComponent implements OnInit{
     )
   }
 
-
+  logout() {
+    this.authService.logout()
+  }
 }

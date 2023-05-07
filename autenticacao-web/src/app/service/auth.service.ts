@@ -4,13 +4,14 @@ import {environment} from '../../environment';
 import {map} from 'rxjs/operators';
 import {LoginDTO} from '../model/login.model';
 import {Observable} from 'rxjs';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(loginDTO: LoginDTO): Observable<any> {
     const email = loginDTO.email;
@@ -27,6 +28,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
   }
 
   getCurrentUser() {
