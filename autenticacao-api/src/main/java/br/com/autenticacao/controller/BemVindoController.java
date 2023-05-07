@@ -15,6 +15,6 @@ public class BemVindoController {
     @ApiOperation(value = "Seja Bem-vindo")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<String> bemVindo() {
-        return ResponseEntity.ok("Seja Bem-vindo(a)");
+        return ResponseEntity.ok("Logado com sucesso");
     }
 }
